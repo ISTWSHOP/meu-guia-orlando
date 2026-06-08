@@ -1473,7 +1473,7 @@ function geoClick(){
     if(err.code===1){
       var isSafari=/^((?!chrome|android).)*safari/i.test(navigator.userAgent);
       if(isSafari){
-        alert('Localização bloqueada no Safari.\n\n📱 iPhone/iPad:\nAjustes → Privacidade → Serviços de Localização → Safari → "Ao usar o app"\n\n💻 Mac:\nPreferências do Sistema → Segurança e Privacidade → Serviços de Localização → Safari ✓\n\nDepois recarregue a página e tente novamente.');
+        alert('Localização bloqueada no Safari.\n\n📱 iPhone/iPad:\nAjustes → Privacidade e Segurança → Serviços de Localização → Safari → "Ao usar o app"\n\n💻 Mac:\nSafari → Ajustes → Sites → Localização → encontre istwshop.github.io → selecione "Permitir"\n\nDepois recarregue a página e tente novamente.');
       } else {
         alert('Permissão de localização negada.\nClique no ícone 🔒 na barra de endereço e permita a localização.');
       }
