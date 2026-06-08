@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Meu Guia de Lugares</title>
 <style>
-/* ── radio inputs ocultos (mas funcionais) ── */
 input[type=radio]{position:absolute;left:-9999px;}
-
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f7;color:#1d1d1f;}
 
@@ -16,45 +14,40 @@ h1{font-size:18px;font-weight:700;}
 .sub{font-size:12px;color:#6e6e73;margin-bottom:10px;}
 .cats{display:flex;gap:6px;overflow-x:auto;padding:6px 0 0;scrollbar-width:none;}
 .cats::-webkit-scrollbar{display:none;}
-.cats label{padding:5px 12px;border:1.5px solid #d2d2d7;border-radius:20px;font-size:12px;background:#fff;white-space:nowrap;cursor:pointer;display:inline-block;}
+.cats label{padding:5px 12px;border:1.5px solid #d2d2d7;border-radius:20px;font-size:12px;background:#fff;white-space:nowrap;cursor:pointer;display:inline-block;transition:all .15s;}
 
-/* label ativa quando radio correspondente está checked */
 #f-todos:checked ~ .header label[for=f-todos],
-#f-japones:checked ~ .header label[for=f-japones],
-#f-steakhouse:checked ~ .header label[for=f-steakhouse],
-#f-brasileiro:checked ~ .header label[for=f-brasileiro],
-#f-hamburguer:checked ~ .header label[for=f-hamburguer],
-#f-latino:checked ~ .header label[for=f-latino],
+#f-chique:checked ~ .header label[for=f-chique],
 #f-italiano:checked ~ .header label[for=f-italiano],
 #f-asiatico:checked ~ .header label[for=f-asiatico],
-#f-cafe:checked ~ .header label[for=f-cafe],
+#f-brasileiro:checked ~ .header label[for=f-brasileiro],
+#f-sushi:checked ~ .header label[for=f-sushi],
+#f-curiosidades:checked ~ .header label[for=f-curiosidades],
+#f-foodtruck:checked ~ .header label[for=f-foodtruck],
+#f-sportsbar:checked ~ .header label[for=f-sportsbar],
+#f-mediterraneo:checked ~ .header label[for=f-mediterraneo],
+#f-pizzaria:checked ~ .header label[for=f-pizzaria],
 #f-brunch:checked ~ .header label[for=f-brunch],
-#f-bar:checked ~ .header label[for=f-bar],
-#f-pub:checked ~ .header label[for=f-pub],
-#f-frutosdomar:checked ~ .header label[for=f-frutosdomar],
-#f-disney:checked ~ .header label[for=f-disney],
 #f-passeio:checked ~ .header label[for=f-passeio],
-#f-compras:checked ~ .header label[for=f-compras]
+#f-compras:checked ~ .header label[for=f-compras],
+#f-parques:checked ~ .header label[for=f-parques]
 {background:#0071e3;color:#fff;border-color:#0071e3;}
 
-/* ── filtros por categoria (oculta cards que NÃO batem) ── */
-#f-japones:checked ~ .container .card:not([data-b=japones]){display:none;}
-#f-steakhouse:checked ~ .container .card:not([data-b=steakhouse]){display:none;}
-#f-brasileiro:checked ~ .container .card:not([data-b=brasileiro]){display:none;}
-#f-hamburguer:checked ~ .container .card:not([data-b=hamburguer]){display:none;}
-#f-latino:checked ~ .container .card:not([data-b=latino]){display:none;}
+#f-chique:checked ~ .container .card:not([data-b=chique]){display:none;}
 #f-italiano:checked ~ .container .card:not([data-b=italiano]){display:none;}
 #f-asiatico:checked ~ .container .card:not([data-b=asiatico]){display:none;}
-#f-cafe:checked ~ .container .card:not([data-b=cafe]){display:none;}
+#f-brasileiro:checked ~ .container .card:not([data-b=brasileiro]){display:none;}
+#f-sushi:checked ~ .container .card:not([data-b=sushi]){display:none;}
+#f-curiosidades:checked ~ .container .card:not([data-b=curiosidades]){display:none;}
+#f-foodtruck:checked ~ .container .card:not([data-b=foodtruck]){display:none;}
+#f-sportsbar:checked ~ .container .card:not([data-b=sportsbar]){display:none;}
+#f-mediterraneo:checked ~ .container .card:not([data-b=mediterraneo]){display:none;}
+#f-pizzaria:checked ~ .container .card:not([data-b=pizzaria]){display:none;}
 #f-brunch:checked ~ .container .card:not([data-b=brunch]){display:none;}
-#f-bar:checked ~ .container .card:not([data-b=bar]){display:none;}
-#f-pub:checked ~ .container .card:not([data-b=pub]){display:none;}
-#f-frutosdomar:checked ~ .container .card:not([data-b=frutosdomar]){display:none;}
-#f-disney:checked ~ .container .card:not([data-b=disney]){display:none;}
 #f-passeio:checked ~ .container .card:not([data-b=passeio]){display:none;}
 #f-compras:checked ~ .container .card:not([data-b=compras]){display:none;}
+#f-parques:checked ~ .container .card:not([data-b=parques]){display:none;}
 
-/* ── layout ── */
 .container{padding:12px 16px;}
 .grid{display:grid;grid-template-columns:1fr;gap:10px;}
 @media(min-width:600px){.grid{grid-template-columns:1fr 1fr;}}
@@ -65,8 +58,8 @@ h1{font-size:18px;font-weight:700;}
 .cname{font-size:14px;font-weight:700;flex:1;line-height:1.3;}
 .badge{font-size:9px;font-weight:600;padding:2px 6px;border-radius:5px;white-space:nowrap;margin-left:6px;flex-shrink:0;}
 .ctype{font-size:10px;color:#6e6e73;margin-bottom:5px;}
-.caddr{font-size:11px;color:#444;margin-bottom:6px;}
-.caddr::before{content:"📍 ";}
+a.caddr{font-size:11px;color:#007aff;text-decoration:none;display:block;margin-bottom:6px;}
+a.caddr:hover{text-decoration:underline;}
 .cprice{font-size:11px;margin-bottom:7px;color:#555;}
 .cprice b{color:#1d1d1f;}
 .chip{background:#f5f5f7;border-radius:7px;padding:8px 10px;font-size:11px;line-height:1.7;margin-bottom:9px;color:#333;}
@@ -75,69 +68,63 @@ h1{font-size:18px;font-weight:700;}
 a.iglink{font-size:11px;color:#0071e3;text-decoration:none;}
 .dist{font-size:11px;color:#34c759;font-weight:600;}
 
-/* geo bar (só aparece via JS) */
 .geo-bar{padding:8px 16px 4px;}
-.geo-btn{width:100%;padding:8px;border:1.5px solid #34c759;border-radius:10px;color:#34c759;font-size:14px;background:#fff;cursor:pointer;}
+.geo-btn{width:100%;padding:8px;border:1.5px solid #34c759;border-radius:10px;color:#34c759;font-size:14px;background:#fff;cursor:pointer;transition:all .2s;}
 .geo-btn.on{background:#34c759;color:#fff;}
 
-.b-japones{background:#ffecd1;color:#c45a00;}
-.b-venezuelano{background:#fff0cc;color:#9a6f00;}
-.b-brasileiro{background:#dff5e3;color:#1a7f37;}
-.b-latino{background:#ffe8f5;color:#9b1a6a;}
-.b-cafe{background:#e8f0fb;color:#1a4fa0;}
-.b-brunch{background:#fff3e0;color:#b45309;}
-.b-bar{background:#f0e8ff;color:#5b21b6;}
-.b-disney{background:#e0f2fe;color:#0369a1;}
-.b-compras{background:#fce7f3;color:#9d174d;}
-.b-steakhouse{background:#fef3c7;color:#92400e;}
+.b-chique{background:#fef3c7;color:#92400e;}
 .b-italiano{background:#fee2e2;color:#b91c1c;}
 .b-asiatico{background:#ede9fe;color:#5b21b6;}
-.b-hamburguer{background:#ffedd5;color:#c2410c;}
-.b-frutosdomar{background:#cffafe;color:#0e7490;}
-.b-passeio{background:#dcfce7;color:#15803d;}
-.b-pub{background:#d1fae5;color:#065f46;}
+.b-brasileiro{background:#dcfce7;color:#15803d;}
+.b-sushi{background:#ffecb3;color:#e65100;}
+.b-curiosidades{background:#cffafe;color:#0e7490;}
+.b-foodtruck{background:#ffedd5;color:#c2410c;}
+.b-sportsbar{background:#dbeafe;color:#1d4ed8;}
+.b-mediterraneo{background:#e0f2fe;color:#0369a1;}
+.b-pizzaria{background:#fce7f3;color:#9d174d;}
+.b-brunch{background:#fef9c3;color:#854d0e;}
+.b-passeio{background:#dcfce7;color:#166534;}
+.b-compras{background:#fce7f3;color:#9d174d;}
+.b-parques{background:#e0f2fe;color:#0c4a6e;}
 </style>
 </head>
 <body>
 
-<!-- radio buttons ANTES de tudo para o CSS sibling selector funcionar -->
 <input type="radio" id="f-todos" name="cat" checked>
-<input type="radio" id="f-japones" name="cat">
-<input type="radio" id="f-steakhouse" name="cat">
-<input type="radio" id="f-brasileiro" name="cat">
-<input type="radio" id="f-hamburguer" name="cat">
-<input type="radio" id="f-latino" name="cat">
+<input type="radio" id="f-chique" name="cat">
 <input type="radio" id="f-italiano" name="cat">
 <input type="radio" id="f-asiatico" name="cat">
-<input type="radio" id="f-cafe" name="cat">
+<input type="radio" id="f-brasileiro" name="cat">
+<input type="radio" id="f-sushi" name="cat">
+<input type="radio" id="f-curiosidades" name="cat">
+<input type="radio" id="f-foodtruck" name="cat">
+<input type="radio" id="f-sportsbar" name="cat">
+<input type="radio" id="f-mediterraneo" name="cat">
+<input type="radio" id="f-pizzaria" name="cat">
 <input type="radio" id="f-brunch" name="cat">
-<input type="radio" id="f-bar" name="cat">
-<input type="radio" id="f-pub" name="cat">
-<input type="radio" id="f-frutosdomar" name="cat">
-<input type="radio" id="f-disney" name="cat">
 <input type="radio" id="f-passeio" name="cat">
 <input type="radio" id="f-compras" name="cat">
+<input type="radio" id="f-parques" name="cat">
 
 <div class="header">
   <h1>📍 Meu Guia de Lugares</h1>
-  <p class="sub">27 lugares salvos</p>
+  <p class="sub">41 lugares salvos</p>
   <div class="cats">
     <label for="f-todos">Todos</label>
-    <label for="f-japones">🍣 Japonês</label>
-    <label for="f-steakhouse">🥩 Steakhouse</label>
-    <label for="f-brasileiro">🇧🇷 Brasileiro</label>
-    <label for="f-hamburguer">🍔 Hambúrguer</label>
-    <label for="f-latino">🌎 Latino</label>
-    <label for="f-italiano">🍕 Italiano</label>
-    <label for="f-asiatico">🌍 Asiático</label>
-    <label for="f-cafe">☕ Café</label>
-    <label for="f-brunch">🍳 Brunch</label>
-    <label for="f-bar">🍷 Bar</label>
-    <label for="f-pub">🍀 Pub</label>
-    <label for="f-frutosdomar">🦞 Frutos do Mar</label>
-    <label for="f-disney">🎡 Disney</label>
-    <label for="f-passeio">🌾 Passeio</label>
+    <label for="f-chique">⭐ Chique/Michelin</label>
+    <label for="f-italiano">🍝 Italiano</label>
+    <label for="f-asiatico">🥡 Chinês/Japonês</label>
+    <label for="f-brasileiro">🇧🇷 Brasileiro/Latino</label>
+    <label for="f-sushi">🍣 Sushi</label>
+    <label for="f-curiosidades">💡 Curiosidades</label>
+    <label for="f-foodtruck">🚚 Food Truck</label>
+    <label for="f-sportsbar">🏈 Sports Bar</label>
+    <label for="f-mediterraneo">🌊 Mediterrâneo</label>
+    <label for="f-pizzaria">🍕 Pizzaria</label>
+    <label for="f-brunch">🥞 Brunch</label>
+    <label for="f-passeio">🌿 Passeio</label>
     <label for="f-compras">🛍️ Compras</label>
+    <label for="f-parques">🏰 Parques</label>
   </div>
 </div>
 
@@ -148,247 +135,565 @@ a.iglink{font-size:11px;color:#0071e3;text-decoration:none;}
 <div class="container">
 <div class="grid">
 
-<div class="card" data-b="japones" data-lat="28.4303" data-lng="-81.4650">
-<div class="ctop"><div class="cname">🍣 Kingdom Sushi</div><span class="badge b-japones">Japonês</span></div>
-<div class="ctype">Restaurante Japonês</div>
-<div class="caddr">5632 International Dr, Orlando, FL</div>
-<div class="cprice">💰 <b>$32.90 – $49.90 / pessoa</b></div>
-<div class="chip"><ul><li>All You Can Eat feito na hora</li><li>Sobremesa inclusa no rodízio</li><li>10% OFF jantar seg–qui (mostrar vídeo)</li><li>Crianças até 4 anos: $10</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DYcawQehaqd/">▶ Instagram</a><span class="dist" data-lat="28.4303" data-lng="-81.4650"></span></div>
+<!-- ══ CHIQUE / MICHELIN ══ -->
+
+<div class="card" data-b="chique" data-lat="28.3837" data-lng="-81.2597">
+<div class="ctop"><div class="cname">✨ BACÁN Restaurant</div><span class="badge b-chique">⭐ Chique</span></div>
+<div class="ctype">Alta Gastronomia – Lake Nona Wave Hotel</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3837,-81.2597" target="_blank">📍 6100 Wave Hotel Dr, Orlando, FL 32827</a>
+<div class="cprice">💰 <b>Tasting Menu $95–$150 | Pratos $39–$49</b></div>
+<div class="chip"><ul>
+<li>🐟 Florida Snapper – curry guianense, mofongo, mojo verde</li>
+<li>🥩 Pork Chop 14oz Dry Aged – purê de cenoura defumada</li>
+<li>🍽️ Chef's Experience: 8 courses $150 | 5 courses $95</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.bacanlakenona.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.3837" data-lng="-81.2597"></span></div>
 </div>
 
-<div class="card" data-b="japones" data-lat="28.5236" data-lng="-81.4788">
-<div class="ctop"><div class="cname">🍣 Musashi Sushi Lounge</div><span class="badge b-japones">Japonês</span></div>
-<div class="ctype">Restaurante Japonês</div>
-<div class="caddr">MetroWest Orlando + Kissimmee, FL</div>
-<div class="cprice">💰 <b>Rodízio catering (mín. 20 pessoas)</b></div>
-<div class="chip"><ul><li>Melhor rodízio japonês da região</li><li>Catering/delivery para festas em casa</li><li>2 unidades: MetroWest e Kissimmee</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DUd2RtkDmxR/">▶ Instagram</a><span class="dist" data-lat="28.5236" data-lng="-81.4788"></span></div>
+<div class="card" data-b="chique" data-lat="28.3655" data-lng="-81.5634">
+<div class="ctop"><div class="cname">⭐ Toledo – Tapas, Steak &amp; Seafood</div><span class="badge b-chique">⭐ Michelin</span></div>
+<div class="ctype">Culinária Espanhola – Disney's Coronado Springs, 16º andar</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3655,-81.5634" target="_blank">📍 1001 W Buena Vista Dr, Orlando, FL 32830</a>
+<div class="cprice">💰 <b>Alto padrão – reservas pelo Disney Dining</b></div>
+<div class="chip"><ul>
+<li>🐙 Polvo grelhado defumado – destaque absoluto</li>
+<li>🥩 Chuletón envelhecido para 2 pessoas</li>
+<li>🦞 Paella de frutos do mar | +50 vinhos espanhóis</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://disneyworld.disney.go.com/dining/coronado-springs-resort/toledo/" target="_blank">🌐 Reservar</a><span class="dist" data-lat="28.3655" data-lng="-81.5634"></span></div>
 </div>
 
-<div class="card" data-b="japones" data-lat="28.3449" data-lng="-81.5484">
-<div class="ctop"><div class="cname">🍣 Bayridge Sushi</div><span class="badge b-japones">Japonês</span></div>
-<div class="ctype">Restaurante Japonês</div>
-<div class="caddr">3177 Black Lake Rd, Kissimmee, FL 34747</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>25+ anos em Longwood – 2ª unidade em Kissimmee</li><li>Minutos da Disney</li><li>Apresentação dos pratos de alto nível</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DRzdBRSDcaX/">▶ Instagram</a><span class="dist" data-lat="28.3449" data-lng="-81.5484"></span></div>
+<div class="card" data-b="chique" data-lat="28.5928" data-lng="-81.3490">
+<div class="ctop"><div class="cname">🫒 AVA MediterrAegean</div><span class="badge b-chique">⭐ Michelin</span></div>
+<div class="ctype">Mediterrâneo Grego – Park Avenue, Winter Park</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5928,-81.3490" target="_blank">📍 290 S Park Ave, Winter Park, FL 32789</a>
+<div class="cprice">💰 <b>Pratos $30–$60</b></div>
+<div class="chip"><ul>
+<li>🐟 Greek Branzino Filet | Chilean Seabass Grilled</li>
+<li>🦐 Santorini Wild Shrimp Arrabbiata com rigatoni</li>
+<li>🍯 Baklava modernizado – honey, walnut, pistachio ice cream</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.avamediterraegean.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.5928" data-lng="-81.3490"></span></div>
 </div>
 
-<div class="card" data-b="venezuelano" data-lat="28.3567" data-lng="-81.2345">
-<div class="ctop"><div class="cname">🥩 Nando Grill Amazonas</div><span class="badge b-venezuelano">Venezuelano</span></div>
-<div class="ctype">Steakhouse Venezuelano</div>
-<div class="caddr">10749 Narcoossee Rd, Orlando, FL (Lake Nona)</div>
-<div class="cprice">💰 <b>Não informado (recém-aberto)</b></div>
-<div class="chip"><ul><li>Carne en Vara sobre fogo de lenha</li><li>Técnica Llanera slow-roasted</li><li>Destaque: Barinas combo, Wagyu meatballs, lava cake</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DX9mvpJCDL8/">▶ Instagram</a><span class="dist" data-lat="28.3567" data-lng="-81.2345"></span></div>
+<div class="card" data-b="chique" data-lat="28.3704" data-lng="-81.5103">
+<div class="ctop"><div class="cname">🔥 Capa Orlando</div><span class="badge b-chique">⭐ Michelin</span></div>
+<div class="ctype">Steakhouse Espanhola – Four Seasons Resort Disney</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3704,-81.5103" target="_blank">📍 10100 Dream Tree Blvd, Lake Buena Vista, FL</a>
+<div class="cprice">💰 <b>Alto padrão – reservas recomendadas</b></div>
+<div class="chip"><ul>
+<li>🥩 Cortes grelhados na lenha + tapas espanholas</li>
+<li>🌙 Vista panorâmica dos fogos da Disney à noite</li>
+<li>⭐ Estrela Michelin | 17º andar do Four Seasons</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DW468xJtDko/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3704" data-lng="-81.5103"></span></div>
 </div>
 
-<div class="card" data-b="steakhouse" data-lat="28.3696" data-lng="-81.5592">
-<div class="ctop"><div class="cname">🥩 Bourbon Steak – Michael Mina</div><span class="badge b-steakhouse">Steakhouse</span></div>
-<div class="ctype">Steakhouse Luxo</div>
-<div class="caddr">Disney's Swan &amp; Dolphin Resort, Orlando</div>
+<div class="card" data-b="chique" data-lat="28.3643" data-lng="-81.5657">
+<div class="ctop"><div class="cname">🥩 Bourbon Steak – Michael Mina</div><span class="badge b-chique">⭐ Michelin</span></div>
+<div class="ctype">Steakhouse de Luxo – Disney Swan &amp; Dolphin Resort</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3643,-81.5657" target="_blank">📍 Disney's Swan &amp; Dolphin Resort, Orlando, FL</a>
 <div class="cprice">💰 <b>Alto padrão</b></div>
-<div class="chip"><ul><li>Lobster Pot Pie servido à mesa com reconstituição da lagosta</li><li>Crosta folhada, recheio cremoso e manteigado</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DUMDjPzEUOx/">▶ Instagram</a><span class="dist" data-lat="28.3696" data-lng="-81.5592"></span></div>
+<div class="chip"><ul>
+<li>🦞 Lobster Pot Pie – crosta folhada, recheio cremoso e manteigado</li>
+<li>🥩 Wagyu Duck Fat-Poached &amp; Grilled | Dry Aged A5</li>
+<li>⭐ Chef Michael Mina – referência nacional, guia Michelin</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DW468xJtDko/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3643" data-lng="-81.5657"></span></div>
 </div>
 
-<div class="card" data-b="steakhouse" data-lat="28.3587" data-lng="-81.5781">
-<div class="ctop"><div class="cname">🥩 Capa Orlando ⭐ Michelin</div><span class="badge b-steakhouse">Michelin</span></div>
-<div class="ctype">Steakhouse Espanhola – Estrela Michelin</div>
-<div class="caddr">Four Seasons Resort, 10100 Dream Tree Blvd, Lake Buena Vista</div>
-<div class="cprice">💰 <b>Alto padrão</b></div>
-<div class="chip"><ul><li>⭐ Estrela Michelin – 17º andar do Four Seasons</li><li>Vista dos fogos da Disney à noite</li><li>Tapas espanholas + cortes grelhados na lenha</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DQEyaaukZZ0/">▶ Instagram</a><span class="dist" data-lat="28.3587" data-lng="-81.5781"></span></div>
+<!-- ══ ITALIANO ══ -->
+
+<div class="card" data-b="italiano" data-lat="28.3680" data-lng="-81.5940">
+<div class="ctop"><div class="cname">🍋 Simply Capri</div><span class="badge b-italiano">🍝 Italiano</span></div>
+<div class="ctype">Culinária da Costa Amalfitana – Flamingo Crossings, Winter Garden</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3680,-81.5940" target="_blank">📍 114 Ruby Red Pl, Winter Garden, FL 34787</a>
+<div class="cprice">💰 <b>Moderado a alto</b></div>
+<div class="chip"><ul>
+<li>🍕 Pizza forno a lenha estilo Amalfi</li>
+<li>🍝 Pastas caseiras | Frutos do mar frescos</li>
+<li>🍹 Cocktails modernos | Próximo ao Disney World</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.simplycapri.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.3680" data-lng="-81.5940"></span></div>
 </div>
 
-<div class="card" data-b="brasileiro" data-lat="28.3245" data-lng="-81.5423">
-<div class="ctop"><div class="cname">🇧🇷 Dom Helio</div><span class="badge b-brasileiro">Brasileiro</span></div>
-<div class="ctype">Restaurante Brasileiro</div>
-<div class="caddr">1641 Future Way, Kissimmee (Celebration), FL</div>
-<div class="cprice">💰 <b>$14.99 – $39 / pessoa</b></div>
-<div class="chip"><ul><li>Veio direto do Rio | ⭐ 4.9 no Google</li><li>Rodízio massas e pizzas: seg–qui $32.90 | sex–dom $39</li><li>Menu executivo picanha + acomp.: $14.99 seg–sex</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DXrIcIONPPS/">▶ Instagram</a><span class="dist" data-lat="28.3245" data-lng="-81.5423"></span></div>
+<div class="card" data-b="italiano" data-lat="28.5534" data-lng="-81.3959">
+<div class="ctop"><div class="cname">🍝 Turci Pasta</div><span class="badge b-italiano">🍝 Italiano</span></div>
+<div class="ctype">Pasta Fresh – Edgewater Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5534,-81.3959" target="_blank">📍 2120 Edgewater Dr, Orlando, FL 32804</a>
+<div class="cprice">💰 <b>Moderado</b></div>
+<div class="chip"><ul>
+<li>🍐 Pear Ravioli com gorgonzola – assinatura da casa</li>
+<li>🍝 Pasta fresca feita diariamente | Parede de massas exposta</li>
+<li>🏆 Best Italian – Orlando Sentinel Foodie Awards 2023</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.5534" data-lng="-81.3959"></span></div>
 </div>
 
-<div class="card" data-b="brasileiro" data-lat="28.5152" data-lng="-81.4738">
-<div class="ctop"><div class="cname">🇧🇷 Cupcabana</div><span class="badge b-brasileiro">Brasileiro</span></div>
-<div class="ctype">Café Brasileiro</div>
-<div class="caddr">2455 S Hiawassee Rd, Orlando, FL 32835</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>Açaí bowl gigante com toppings à escolha</li><li>Pão de queijo viciante</li><li>Smoothies para levar</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPEWsnzAKrY/">▶ Instagram</a><span class="dist" data-lat="28.5152" data-lng="-81.4738"></span></div>
-</div>
-
-<div class="card" data-b="hamburguer" data-lat="28.4501" data-lng="-81.4826">
-<div class="ctop"><div class="cname">🍔 Rokkas Burger</div><span class="badge b-hamburguer">Hambúrguer</span></div>
-<div class="ctype">Hamburguer Brasileiro Gourmet</div>
-<div class="caddr">7720 Turkey Lake Rd, Suite 115, Orlando, FL 32819</div>
-<div class="cprice">💰 <b>$6.90 – $16.90</b></div>
-<div class="chip"><ul><li>Hambúrguer com farofa de bacon e cream cheese maçaricado</li><li>Açaí bowl $13.90 | Caldo de cana $6.90</li><li>🎁 CUPOM: MAIRA10</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DTwAsL6D81i/">▶ Instagram</a><span class="dist" data-lat="28.4501" data-lng="-81.4826"></span></div>
-</div>
-
-<div class="card" data-b="latino" data-lat="28.4391" data-lng="-81.4661">
-<div class="ctop"><div class="cname">🌎 Corazón by Baires</div><span class="badge b-latino">Latino</span></div>
-<div class="ctype">Restaurante Latino-Americano</div>
-<div class="caddr">7651 International Dr, Orlando, FL</div>
-<div class="cprice">💰 <b>Não informado (jantar especial)</b></div>
-<div class="chip"><ul><li>Bar completo com drinks elaborados</li><li>Sushi + massa no parmigiano wheel</li><li>Experiência gastronômica completa</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DVhYNpsgBcl/">▶ Instagram</a><span class="dist" data-lat="28.4391" data-lng="-81.4661"></span></div>
-</div>
-
-<div class="card" data-b="italiano" data-lat="28.4432" data-lng="-81.4711">
-<div class="ctop"><div class="cname">🍕 Papparella</div><span class="badge b-italiano">Italiano</span></div>
-<div class="ctype">Restaurante Italiano</div>
-<div class="caddr">6002 Sand Lake Vista Dr #100, Orlando, FL 32819</div>
+<div class="card" data-b="italiano" data-lat="28.4519" data-lng="-81.4762">
+<div class="ctop"><div class="cname">🍝 Papparella</div><span class="badge b-italiano">🍝 Italiano</span></div>
+<div class="ctype">Restaurante Italiano – Sand Lake / I-Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4519,-81.4762" target="_blank">📍 6002 Sand Lake Vista Dr #100, Orlando, FL 32819</a>
 <div class="cprice">💰 <b>$18 – $50</b></div>
-<div class="chip"><ul><li>Massas de fermentação natural</li><li>Nhoque c/ Filé Mignon $44 | Lasanha $20 | Pizza $27</li><li>Seg–sex 17h30 | Sáb–dom 12h30</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DS5uxdjAZqx/">▶ Instagram</a><span class="dist" data-lat="28.4432" data-lng="-81.4711"></span></div>
+<div class="chip"><ul>
+<li>🥩 Nhoque com Filé Mignon $44 | Lasanha $20</li>
+<li>🍝 Massas de fermentação natural artesanais</li>
+<li>🕐 Seg–sex 17h30 | Sáb–dom 12h30</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/p/DUGeawqEWI7/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.4519" data-lng="-81.4762"></span></div>
 </div>
 
-<div class="card" data-b="asiatico" data-lat="28.3267" data-lng="-81.5082">
-<div class="ctop"><div class="cname">🥙 The Dough Show</div><span class="badge b-asiatico">Árabe</span></div>
-<div class="ctype">Restaurante Árabe</div>
-<div class="caddr">4797 W Irlo Bronson Memorial Hwy, Ste A, Kissimmee, FL 34746</div>
-<div class="cprice">💰 <b>Preços excelentes</b></div>
-<div class="chip"><ul><li>Culinária árabe autêntica (Fateer e outros)</li><li>Nova localização em Kissimmee</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DUB5GSDkl7V/">▶ Instagram</a><span class="dist" data-lat="28.3267" data-lng="-81.5082"></span></div>
+<!-- ══ CHINÊS / JAPONÊS ══ -->
+
+<div class="card" data-b="asiatico" data-lat="28.5507" data-lng="-81.3608">
+<div class="ctop"><div class="cname">🏮 Tori Tori</div><span class="badge b-asiatico">🥡 Japonês</span></div>
+<div class="ctype">Japanese Pub – Mills 50 District | ⭐ Michelin Guide</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5507,-81.3608" target="_blank">📍 720 N Mills Ave, Orlando, FL 32803</a>
+<div class="cprice">💰 <b>Moderado – sem reservas (fila nos fins de semana)</b></div>
+<div class="chip"><ul>
+<li>🍢 Yakitori skewers variados | Grilled Lamb Chops com mint-yogurt</li>
+<li>🦀 Fried Rice com sweet crab, alho e essência de limão</li>
+<li>🍶 Highball cocktails + sake | Michelin Guide desde 2022</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.toritoripub.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.5507" data-lng="-81.3608"></span></div>
 </div>
 
-<div class="card" data-b="asiatico" data-lat="28.3245" data-lng="-81.5423">
-<div class="ctop"><div class="cname">🍜 Thai Thani Celebration</div><span class="badge b-asiatico">Tailandês</span></div>
-<div class="ctype">Restaurante Tailandês</div>
-<div class="caddr">Celebration, FL (thaithanifl.com)</div>
-<div class="cprice">💰 <b>$6 – $28</b></div>
-<div class="chip"><ul><li>Na avenida principal de Celebration</li><li>Tom Kha Soup $10.99 | Pad Thai $22.99 | Yuzu Cheesecake $9.99</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPmvGqNjUw0/">▶ Instagram</a><span class="dist" data-lat="28.3245" data-lng="-81.5423"></span></div>
+<div class="card" data-b="asiatico" data-lat="28.3854" data-lng="-81.2650">
+<div class="ctop"><div class="cname">🎌 Nami</div><span class="badge b-asiatico">🥡 Japonês</span></div>
+<div class="ctype">Omakase / Japanese Modern – Lake Nona | ⭐ Michelin Guide</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3854,-81.2650" target="_blank">📍 6004 Artist Ave, Orlando, FL 32827</a>
+<div class="cprice">💰 <b>Tasting 18 courses | Chef's Counter omakase</b></div>
+<div class="chip"><ul>
+<li>🦞 Lobster Donuts com matcha powder</li>
+<li>🍣 Tuna Pizza com anchovy aioli | Nami Nuggets com kimchi</li>
+<li>🐟 Citrus-cured buri com yuzu-cured flying fish roe</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.namilakenona.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.3854" data-lng="-81.2650"></span></div>
 </div>
 
-<div class="card" data-b="cafe" data-lat="28.5433" data-lng="-81.6476">
-<div class="ctop"><div class="cname">☕ The French Café</div><span class="badge b-cafe">Café</span></div>
-<div class="ctype">Café / Brunch Francês</div>
-<div class="caddr">16412 New Independence Pkwy #140, Hamlin, Winter Garden, FL</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>Brunch o dia todo, todos os dias</li><li>Croissants artesanais, crepes, ovos benedict</li><li>Tiramisu cups em vários sabores</li><li>"Orlando's Hidden French Gem"</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DVbiMVQDzu7/">▶ Instagram</a><span class="dist" data-lat="28.5433" data-lng="-81.6476"></span></div>
+<div class="card" data-b="asiatico" data-lat="28.5895" data-lng="-81.3418">
+<div class="ctop"><div class="cname">🌶️ Chuan Fu 川府</div><span class="badge b-asiatico">🥡 Chinês</span></div>
+<div class="ctype">Culinária Szechuan – Winter Park | ⭐ Michelin Guide</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5895,-81.3418" target="_blank">📍 1035 N Orlando Ave, Ste 105, Winter Park, FL 32789</a>
+<div class="cprice">💰 <b>Moderado – estilo familiar</b></div>
+<div class="chip"><ul>
+<li>🌶️ Pratos Szechuan autênticos – pimenta szechuan e óleo de pimenta</li>
+<li>🍲 ShuiZhu (水煮 Fish) | Mapo Tofu | Dumplings</li>
+<li>⭐ Único Michelin de culinária chinesa em Orlando</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.chuanfuwinterpark.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.5895" data-lng="-81.3418"></span></div>
 </div>
 
-<div class="card" data-b="brunch" data-lat="28.3713" data-lng="-81.5157">
-<div class="ctop"><div class="cname">🍳 Homecomin' Florida Kitchen</div><span class="badge b-brunch">Brunch</span></div>
-<div class="ctype">Brunch / Restaurante – Disney Springs</div>
-<div class="caddr">Disney Springs, Orlando, FL</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>Melhor brunch do Disney Springs</li><li>Culinária do Sul dos EUA</li><li>Dica: Reese's Nitro no Everglazed ao lado</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DVEWo82EQ28/">▶ Instagram</a><span class="dist" data-lat="28.3713" data-lng="-81.5157"></span></div>
+<!-- ══ BRASILEIRO / LATINO ══ -->
+
+<div class="card" data-b="brasileiro" data-lat="28.2744" data-lng="-81.5992">
+<div class="ctop"><div class="cname">🇧🇷 BR77 Brazilian Steakhouse</div><span class="badge b-brasileiro">🇧🇷 Brasileiro</span></div>
+<div class="ctype">Churrascaria Brasileira – Kissimmee / Margaritaville Resort</div>
+<a class="caddr" href="https://maps.google.com/?q=28.2744,-81.5992" target="_blank">📍 3228 Margaritaville Blvd, Kissimmee, FL 34747</a>
+<div class="cprice">💰 <b>$42.77 adulto | $27.77 criança 6–12 | menores de 5 grátis</b></div>
+<div class="chip"><ul>
+<li>🥩 Picanha, Filet Mignon, Costela Bovina – 14 cortes na espada</li>
+<li>🥗 Salad bar completo + pratos quentes + sobremesas</li>
+<li>🍷 Extensa carta de vinhos | Sáb–dom: abertura 11h30</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://br77steakhouse.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.2744" data-lng="-81.5992"></span></div>
 </div>
 
-<div class="card" data-b="brunch" data-lat="28.3703" data-lng="-81.5200">
-<div class="ctop"><div class="cname">🍳 STK Orlando</div><span class="badge b-brunch">Brunch AYCE</span></div>
-<div class="ctype">Brunch All-You-Can-Eat – Disney Springs</div>
-<div class="caddr">1580 E Buena Vista Dr, Orlando, FL (Disney Springs)</div>
-<div class="cprice">💰 <b>AYCE domingos 9h30–14h</b></div>
-<div class="chip"><ul><li>Inclui: bread basket, caesar, charcuterie, chicken &amp; waffles, ovos, bacon</li><li>Café e suco inclusos | Reservas recomendadas</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPORDQdjadu/">▶ Instagram</a><span class="dist" data-lat="28.3703" data-lng="-81.5200"></span></div>
+<div class="card" data-b="brasileiro" data-lat="28.4549" data-lng="-81.5120">
+<div class="ctop"><div class="cname">🇵🇹 Lisbon Portuguese Cuisine</div><span class="badge b-brasileiro">🇵🇹 Português</span></div>
+<div class="ctype">Culinária Portuguesa – Dr. Phillips Marketplace</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4549,-81.5120" target="_blank">📍 7600 Dr Phillips Blvd, Ste 12, Orlando, FL 32819</a>
+<div class="cprice">💰 <b>Moderado a alto | ⭐ 4.6 estrelas / +700 avaliações</b></div>
+<div class="chip"><ul>
+<li>🐙 Polvo à Lagareiro – referência absoluta da casa</li>
+<li>🐟 Bacalhau em diversas receitas tradicionais</li>
+<li>🥮 Pastel de Nata fresquinho | Vinhos portugueses selecionados</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://lisbonfl.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.4549" data-lng="-81.5120"></span></div>
 </div>
 
-<div class="card" data-b="brunch" data-lat="28.4569" data-lng="-81.5553">
-<div class="ctop"><div class="cname">🍽️ Manzzo Cuisine</div><span class="badge b-brunch">Restaurante</span></div>
-<div class="ctype">Restaurante / Windermere</div>
-<div class="caddr">6506 Old Brick Rd #120, Windermere, FL 34786</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>Pratos únicos e surpreendentes</li><li>Pertinho da Disney</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DSaBqTwgHdx/">▶ Instagram</a><span class="dist" data-lat="28.4569" data-lng="-81.5553"></span></div>
+<div class="card" data-b="brasileiro" data-lat="28.4312" data-lng="-81.4027">
+<div class="ctop"><div class="cname">🇧🇷 Hocca Bar</div><span class="badge b-brasileiro">🇧🇷 Brasileiro</span></div>
+<div class="ctype">Comida Brasileira – Florida Mall</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4312,-81.4027" target="_blank">📍 8001 S Orange Blossom Trl, Ste 1500, Orlando, FL 32809</a>
+<div class="cprice">💰 <b>Acessível</b></div>
+<div class="chip"><ul>
+<li>🥟 Pastéis famosos | Coxinha | Bolinho de Bacalhau</li>
+<li>🥩 Picanha grelhada | Paella | Frango à Parmegiana</li>
+<li>🍹 Caipirinhas | Ponto de encontro da comunidade brasileira</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://hoccaorlando.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.4312" data-lng="-81.4027"></span></div>
 </div>
 
-<div class="card" data-b="bar" data-lat="28.5672" data-lng="-81.3119">
-<div class="ctop"><div class="cname">🍷 Santiago Bodega</div><span class="badge b-bar">Bar</span></div>
-<div class="ctype">Bar / Tapas / Brunch</div>
-<div class="caddr">3901 Aloma Ave, Orlando, FL 32803</div>
-<div class="cprice">💰 <b>Drinks baratos</b></div>
-<div class="chip"><ul><li>Brunch, tapas e drinks a bom preço</li><li>Clima que os locais adoram</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DTGl8orEZbp/">▶ Instagram</a><span class="dist" data-lat="28.5672" data-lng="-81.3119"></span></div>
+<div class="card" data-b="brasileiro" data-lat="28.3177" data-lng="-81.5474">
+<div class="ctop"><div class="cname">🇧🇷 Dom Helio</div><span class="badge b-brasileiro">🇧🇷 Brasileiro</span></div>
+<div class="ctype">Restaurante Brasileiro – Kissimmee (Celebration)</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3177,-81.5474" target="_blank">📍 1641 Future Way, Kissimmee, FL 34747</a>
+<div class="cprice">💰 <b>$14.99 – $39 por pessoa</b></div>
+<div class="chip"><ul>
+<li>🥩 Churrasco brasileiro autêntico – cortes variados</li>
+<li>🥗 Buffet com pratos quentes, saladas e acompanhamentos</li>
+<li>🍰 Sobremesas brasileiras tradicionais</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3177" data-lng="-81.5474"></span></div>
 </div>
 
-<div class="card" data-b="pub" data-lat="28.3703" data-lng="-81.5197">
-<div class="ctop"><div class="cname">🍀 Raglan Road</div><span class="badge b-pub">Pub Irlandês</span></div>
-<div class="ctype">Pub Irlandês – Disney Springs</div>
-<div class="caddr">1640 E Buena Vista Dr, Lake Buena Vista, FL</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>Sanduíche "Worth the Wait" – incrível</li><li>Música ao vivo e dançarinos</li><li>Clima autêntico de pub europeu</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DQAX0KiDuNb/">▶ Instagram</a><span class="dist" data-lat="28.3703" data-lng="-81.5197"></span></div>
+<!-- ══ SUSHI ══ -->
+
+<div class="card" data-b="sushi" data-lat="28.5364" data-lng="-81.3703">
+<div class="ctop"><div class="cname">🍣 Neveyah Sushi &amp; Thai</div><span class="badge b-sushi">🍣 Sushi</span></div>
+<div class="ctype">Sushi + Thai – Downtown Orlando, Lake Eola</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5364,-81.3703" target="_blank">📍 100 S Eola Dr, Ste 105, Orlando, FL 32801</a>
+<div class="cprice">💰 <b>Moderado</b></div>
+<div class="chip"><ul>
+<li>🌊 Solar Bear Roll | B52 Roll | Orlando Pride Roll</li>
+<li>🍜 Drunken Noodles | Pad Thai autêntico</li>
+<li>🦐 Crab Rangoon | Coconut Shrimp Tempura</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://neveyah.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.5364" data-lng="-81.3703"></span></div>
 </div>
 
-<div class="card" data-b="frutosdomar" data-lat="28.4568" data-lng="-81.4126">
-<div class="ctop"><div class="cname">🦞 Bar Harbour</div><span class="badge b-frutosdomar">Frutos do Mar</span></div>
-<div class="ctype">Frutos do Mar / Lagosta</div>
-<div class="caddr">2000 Premier Row, Orlando, FL 32809 (próx. Florida Mall)</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>Especialidade em lagosta</li><li>Vale muito a visita!</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPgNvrujub7/">▶ Instagram</a><span class="dist" data-lat="28.4568" data-lng="-81.4126"></span></div>
+<div class="card" data-b="sushi" data-lat="28.4835" data-lng="-81.5095">
+<div class="ctop"><div class="cname">🍣 Musashi Sushi Lounge</div><span class="badge b-sushi">🍣 Sushi</span></div>
+<div class="ctype">Rodízio Japonês – MetroWest + Kissimmee</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4835,-81.5095" target="_blank">📍 MetroWest Orlando + Kissimmee, FL</a>
+<div class="cprice">💰 <b>Rodízio | Catering mín. 20 pessoas</b></div>
+<div class="chip"><ul>
+<li>🍣 Melhor rodízio japonês da região – referência</li>
+<li>🚚 Catering e delivery para festas em casa</li>
+<li>📍 2 unidades: MetroWest e Kissimmee</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPgNvrujub7/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.4835" data-lng="-81.5095"></span></div>
 </div>
 
-<div class="card" data-b="disney" data-lat="28.3852" data-lng="-81.5639">
-<div class="ctop"><div class="cname">🎡 Disney Passholders 40% OFF</div><span class="badge b-disney">Disney</span></div>
-<div class="ctype">Dica de Desconto – Disney World</div>
-<div class="caddr">Walt Disney World Resort, Orlando</div>
-<div class="cprice">💰 <b>Até 40% OFF (seg–qui, mai–jul)</b></div>
-<div class="chip"><ul><li>40% OFF: Coral Reef, Garden Grill, Tiffins, Tusker House, Toledo ⭐</li><li>20% OFF: Be Our Guest, Crystal Palace</li><li>Só seg–qui | dine-in | até 3 convidados por passe</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DW468xJtDko/">▶ Instagram</a><span class="dist" data-lat="28.3852" data-lng="-81.5639"></span></div>
+<div class="card" data-b="sushi" data-lat="28.4354" data-lng="-81.4714">
+<div class="ctop"><div class="cname">🍣 Hidden Sushi</div><span class="badge b-sushi">🍣 Sushi</span></div>
+<div class="ctype">Sushi AYCE + Fusion Brasileira – International Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4354,-81.4714" target="_blank">📍 5417 International Dr, Orlando, FL 32819</a>
+<div class="cprice">💰 <b>All You Can Eat ilimitado + à la carte</b></div>
+<div class="chip"><ul>
+<li>🍌 Banana Tempura com Nutella – assinatura da casa</li>
+<li>🍱 Shimeji, Hot Rolls, Temakis, Calamari, Salmon Sashimi</li>
+<li>🇧🇷 Sushi com toque brasileiro | AYCE ilimitado</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.hiddensushiorlando.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.4354" data-lng="-81.4714"></span></div>
 </div>
 
-<div class="card" data-b="disney" data-lat="28.3747" data-lng="-81.5494">
-<div class="ctop"><div class="cname">🎡 EPCOT – Sobremesas por Pavilhão</div><span class="badge b-disney">Disney</span></div>
-<div class="ctype">Dica Disney – EPCOT</div>
-<div class="caddr">EPCOT, Walt Disney World, Orlando</div>
-<div class="cprice">💰 <b>Variável por pavilhão</b></div>
-<div class="chip"><ul><li>🇫🇷 França: sorvete no brioche | 🇩🇪 Alemanha: pipoca de caramelo</li><li>🇺🇸 EUA: funnel cake | 🇯🇵 Japão: mochi ice cream</li><li>🇮🇹 Itália: gelato | 🇳🇴 Noruega: school bread</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/p/DUGeawqEWI7/">▶ Instagram</a><span class="dist" data-lat="28.3747" data-lng="-81.5494"></span></div>
+<div class="card" data-b="sushi" data-lat="28.4303" data-lng="-81.4650">
+<div class="ctop"><div class="cname">🍣 Kingdom Sushi</div><span class="badge b-sushi">🍣 Sushi</span></div>
+<div class="ctype">Rodízio Japonês – International Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4303,-81.4650" target="_blank">📍 5632 International Dr, Orlando, FL 32819</a>
+<div class="cprice">💰 <b>$32.90 – $49.90 por pessoa</b></div>
+<div class="chip"><ul>
+<li>🍣 All You Can Eat feito na hora, sobremesa inclusa</li>
+<li>💰 10% OFF jantar seg–qui (mostrar vídeo)</li>
+<li>👶 Crianças até 4 anos: $10 | até 8 anos: $22</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.4303" data-lng="-81.4650"></span></div>
 </div>
 
-<div class="card" data-b="disney" data-lat="28.5383" data-lng="-81.3792">
-<div class="ctop"><div class="cname">⭐ Guia Michelin Orlando</div><span class="badge b-disney">Dica</span></div>
-<div class="ctype">Roteiro Alta Gastronomia</div>
-<div class="caddr">Vários bairros de Orlando</div>
-<div class="cprice">💰 <b>Alto padrão</b></div>
-<div class="chip"><ul><li>Kadence (Sushi) | Papa Llama (Peruano) | Camille (Vietnamita)</li><li>Victoria &amp; Albert's (Disney) | Sorakara ⭐⭐ (Jap-Francesa)</li><li>Capa (Four Seasons) | Natsu (Downtown) | Omo by Jont (Winter Park)</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DTRm7_igKQT/">▶ Instagram</a><span class="dist" data-lat="28.5383" data-lng="-81.3792"></span></div>
+<!-- ══ CURIOSIDADES ══ -->
+
+<div class="card" data-b="curiosidades" data-lat="28.5928" data-lng="-81.3491">
+<div class="ctop"><div class="cname">🍫 AJ Chocolate House</div><span class="badge b-curiosidades">💡 Curiosidade</span></div>
+<div class="ctype">Café &amp; Chocolateria Artesanal – Park Ave, Winter Park</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5928,-81.3491" target="_blank">📍 552 S Park Ave, Winter Park, FL 32789</a>
+<div class="cprice">💰 <b>Moderado | Seg–dom 10h–22h</b></div>
+<div class="chip"><ul>
+<li>☕ Tea Towers + café artesanal + vinho &amp; cocktails</li>
+<li>🥐 Croissant brie+mel+maçã | Croissant prosciutto+fig jam</li>
+<li>🍦 Sorvete artesanal | Chocolates hand-crafted premium</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://ajchocolate.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.5928" data-lng="-81.3491"></span></div>
 </div>
 
-<div class="card" data-b="disney" data-lat="28.3705" data-lng="-81.5195">
-<div class="ctop"><div class="cname">🛥️ The Boathouse</div><span class="badge b-disney">Disney Springs</span></div>
-<div class="ctype">Restaurante – Disney Springs</div>
-<div class="caddr">1620 E Buena Vista Dr, Lake Buena Vista, FL</div>
-<div class="cprice">💰 <b>Não informado</b></div>
-<div class="chip"><ul><li>Sobremesas over-the-top, ótimas para compartilhar</li><li>À beira do lago em Disney Springs</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPzCe5yjucP/">▶ Instagram</a><span class="dist" data-lat="28.3705" data-lng="-81.5195"></span></div>
+<div class="card" data-b="curiosidades" data-lat="28.3829" data-lng="-81.3781">
+<div class="ctop"><div class="cname">🥙 Beirut Bakery &amp; Deli</div><span class="badge b-curiosidades">💡 Curiosidade</span></div>
+<div class="ctype">Padaria &amp; Deli Libanesa – South Orange Blossom</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3829,-81.3781" target="_blank">📍 11757 S Orange Blossom Trl, Orlando, FL 32837</a>
+<div class="cprice">💰 <b>Acessível | Aberto 9h–19h</b></div>
+<div class="chip"><ul>
+<li>🥙 Manakeesh (pão libanês fresquinho) | Lahm Ajeen $11.25</li>
+<li>🧆 Kibbeh artesanal | Beef Arayes $12.99 | Baklava</li>
+<li>🫓 Pita fresquíssimo saindo do forno | Mezze variados</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.facebook.com/beirutbakeryanddeli/" target="_blank">📘 Facebook</a><span class="dist" data-lat="28.3829" data-lng="-81.3781"></span></div>
 </div>
+
+<div class="card" data-b="curiosidades" data-lat="28.5652" data-lng="-81.5857">
+<div class="ctop"><div class="cname">🥐 Rosallie Le French Café</div><span class="badge b-curiosidades">💡 Curiosidade</span></div>
+<div class="ctype">Café Francês &amp; Patisserie – Downtown Winter Garden</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5652,-81.5857" target="_blank">📍 141 W Plant St, Winter Garden, FL 34787</a>
+<div class="cprice">💰 <b>Moderado | Charmoso e instagramável</b></div>
+<div class="chip"><ul>
+<li>🥐 Croissants frescos | Quiche | Pão artesanal diário</li>
+<li>🧀 Plateau com brie, comté, prosciutto e saucisson français</li>
+<li>☕ Café premium | Perfeito para brunch ou tarde relaxante</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://rosallie.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.5652" data-lng="-81.5857"></span></div>
+</div>
+
+<!-- ══ FOOD TRUCK ══ -->
+
+<div class="card" data-b="foodtruck" data-lat="28.5265" data-lng="-81.4589">
+<div class="ctop"><div class="cname">🚚 Brazi Burger</div><span class="badge b-foodtruck">🚚 Food Truck</span></div>
+<div class="ctype">Food Truck Brasileiro – Old Winter Garden Rd</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5265,-81.4589" target="_blank">📍 5829 Old Winter Garden Rd, Orlando, FL 32835</a>
+<div class="cprice">💰 <b>Acessível | Seg–Sáb 17h–23h</b></div>
+<div class="chip"><ul>
+<li>🍔 Burgers brasileiros com combinações únicas e criativas</li>
+<li>🧀 Queijos e molhos especiais | Pão de brioche</li>
+<li>🌙 Jantar informal ao ar livre | Ambiente descontraído</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.5265" data-lng="-81.4589"></span></div>
+</div>
+
+<div class="card" data-b="foodtruck" data-lat="28.4384" data-lng="-81.4809">
+<div class="ctop"><div class="cname">🌭 Mr Burdog</div><span class="badge b-foodtruck">🚚 Food Truck</span></div>
+<div class="ctype">Hot Dogs &amp; Burgers Brasileiros – Sand Lake / I-Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4384,-81.4809" target="_blank">📍 4771 W Sand Lake Rd, Orlando, FL 32819</a>
+<div class="cprice">💰 <b>Acessível | Aberto 12h–0h</b></div>
+<div class="chip"><ul>
+<li>🌭 Hot Dogs no estilo brasileiro – cobertos e carregados</li>
+<li>🍔 Burgers especiais | Chili Cheese Dog</li>
+<li>🇧🇷 Lanchonete brasileira com toque americano</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/mrburdog/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.4384" data-lng="-81.4809"></span></div>
+</div>
+
+<!-- ══ SPORTS BAR ══ -->
+
+<div class="card" data-b="sportsbar" data-lat="28.3855" data-lng="-81.2520">
+<div class="ctop"><div class="cname">🎨 Canvas Restaurant &amp; Market</div><span class="badge b-sportsbar">🏈 Sports Bar</span></div>
+<div class="ctype">Bar &amp; Grill Beira-Lago – Lake Nona</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3855,-81.2520" target="_blank">📍 13615 Sachs Ave, Orlando, FL 32827</a>
+<div class="cprice">💰 <b>Moderado | Seg–Qui 11h–22h | Sex 11h–23h</b></div>
+<div class="chip"><ul>
+<li>🦐 Peel-and-eat shrimp | Fried shrimp &amp; oyster po'boy</li>
+<li>🥩 Braised short ribs com ricotta caseira e gremolata</li>
+<li>🌊 Único restaurante com vista para o lago em Orlando</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://canvaslakenona.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.3855" data-lng="-81.2520"></span></div>
+</div>
+
+<div class="card" data-b="sportsbar" data-lat="28.5447" data-lng="-81.3461">
+<div class="ctop"><div class="cname">🔪 Manny's Original Chophouse</div><span class="badge b-sportsbar">🏈 Sports Bar</span></div>
+<div class="ctype">Chophouse &amp; Sports Bar – Baldwin Park</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5447,-81.3461" target="_blank">📍 4979 New Broad St, Orlando, FL 32814</a>
+<div class="cprice">💰 <b>Moderado | Jantar diário</b></div>
+<div class="chip"><ul>
+<li>🥩 Steaks, pork chops, ribs &amp; fresh seafood da estação</li>
+<li>🥗 Endless Salad Bowl com Garlic Ranch Dressing da casa</li>
+<li>🍞 Sweet Yeast Rolls com Cinnamon Butter – imperdível</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.mannyschophouse.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.5447" data-lng="-81.3461"></span></div>
+</div>
+
+<div class="card" data-b="sportsbar" data-lat="28.4187" data-lng="-81.4679">
+<div class="ctop"><div class="cname">🏁 Sickies Garage Burgers &amp; Brews</div><span class="badge b-sportsbar">🏈 Sports Bar</span></div>
+<div class="ctype">Bar &amp; Burgers – International Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4187,-81.4679" target="_blank">📍 11701 International Dr, Ste 100, Orlando, FL 32821</a>
+<div class="cprice">💰 <b>Acessível | 11h–22h</b></div>
+<div class="chip"><ul>
+<li>🍔 50 burgers diferentes + opções Wagyu e vegetarianas</li>
+<li>🍺 50 cervejas artesanais de torneira | Wings com 20+ molhos</li>
+<li>🍦 Milkshakes exagerados | Mac &amp; Cheese carregado</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://sickiesburgers.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.4187" data-lng="-81.4679"></span></div>
+</div>
+
+<!-- ══ MEDITERRÂNEO ══ -->
+
+<div class="card" data-b="mediterraneo" data-lat="28.4568" data-lng="-81.4126">
+<div class="ctop"><div class="cname">🦞 Bar Harbour</div><span class="badge b-mediterraneo">🌊 Mediterrâneo</span></div>
+<div class="ctype">Frutos do Mar / Lagosta – próx. Florida Mall</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4568,-81.4126" target="_blank">📍 2000 Premier Row, Orlando, FL 32809</a>
+<div class="cprice">💰 <b>Moderado a alto</b></div>
+<div class="chip"><ul>
+<li>🦞 Especialidade em lagosta – referência absoluta</li>
+<li>🐟 Frutos do mar frescos em diferentes preparos</li>
+<li>⭐ Ambiente sofisticado – vale muito a visita!</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPgNvrujub7/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.4568" data-lng="-81.4126"></span></div>
+</div>
+
+<div class="card" data-b="mediterraneo" data-lat="28.4293" data-lng="-81.4712">
+<div class="ctop"><div class="cname">🌊 Helena Modern Riviera</div><span class="badge b-mediterraneo">🌊 Mediterrâneo</span></div>
+<div class="ctype">Mediterrâneo-Americano – Icon Park, I-Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4293,-81.4712" target="_blank">📍 8441 International Dr, Ste 260, Orlando, FL 32819</a>
+<div class="cprice">💰 <b>Moderado | Abre às 11h diariamente</b></div>
+<div class="chip"><ul>
+<li>🥐 French brioche beignets | Goat cheese puff pastry salad</li>
+<li>🥩 Cured meats artesanais | Cocktails hand-crafted</li>
+<li>📍 Icon Park – próximo à famosa roda-gigante de Orlando</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://helenamodernriviera.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.4293" data-lng="-81.4712"></span></div>
+</div>
+
+<div class="card" data-b="mediterraneo" data-lat="28.4551" data-lng="-81.5123">
+<div class="ctop"><div class="cname">🇹🇷 Bosphoros Turkish Cuisine</div><span class="badge b-mediterraneo">🌊 Mediterrâneo</span></div>
+<div class="ctype">Culinária Turca – Dr. Phillips (várias unidades em Orlando)</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4551,-81.5123" target="_blank">📍 7600 Dr Phillips Blvd, Orlando, FL 32819</a>
+<div class="cprice">💰 <b>Moderado | Dom–Qui 11h–22h | Sex–Sáb 11h–23h</b></div>
+<div class="chip"><ul>
+<li>🥩 Lamb Kebabs variados – Adana, Shish, Mixed Grill</li>
+<li>🐟 Seafood fresco | Meze (petiscos turcos variados)</li>
+<li>🍯 Baklava artesanal | Ambiente turco autêntico</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.bosphorousrestaurant.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.4551" data-lng="-81.5123"></span></div>
+</div>
+
+<!-- ══ PIZZARIA ══ -->
+
+<div class="card" data-b="pizzaria" data-lat="28.4368" data-lng="-81.4715">
+<div class="ctop"><div class="cname">🍕 Mia's Italian Kitchen</div><span class="badge b-pizzaria">🍕 Pizzaria</span></div>
+<div class="ctype">Pizzaria Siciliana &amp; Culinária Italiana – International Drive</div>
+<a class="caddr" href="https://maps.google.com/?q=28.4368,-81.4715" target="_blank">📍 8717 International Dr, Orlando, FL 32819</a>
+<div class="cprice">💰 <b>Moderado</b></div>
+<div class="chip"><ul>
+<li>🍕 Brick Oven Pan Pizza siciliana em forno de 800°F</li>
+<li>🍝 Giant Meatball com molho nonna | Rigatoni Al Forno</li>
+<li>🐟 Branzino grelhado com caper puttanesca</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://orlando-fl.miasitalian.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.4368" data-lng="-81.4715"></span></div>
+</div>
+
+<div class="card" data-b="pizzaria" data-lat="28.5527" data-lng="-81.3843">
+<div class="ctop"><div class="cname">🍕 Pizza Bruno</div><span class="badge b-pizzaria">🍕 Pizzaria</span></div>
+<div class="ctype">Pizzaria Napolitana Artesanal – Colonialtown</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5527,-81.3843" target="_blank">📍 704 W Colonial Dr, Orlando, FL 32804</a>
+<div class="cprice">💰 <b>Acessível a moderado</b></div>
+<div class="chip"><ul>
+<li>🍕 Margherita clássica | Specialty pies – massa fermentada longa</li>
+<li>🔥 Forno a lenha napolitano | Ingredientes locais e sazonais</li>
+<li>⭐ Favorita dos moradores – fila nos fins de semana</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.5527" data-lng="-81.3843"></span></div>
+</div>
+
+<!-- ══ BRUNCH ══ -->
+
+<div class="card" data-b="brunch" data-lat="28.3705" data-lng="-81.5195">
+<div class="ctop"><div class="cname">🌾 Homecomin' Florida Kitchen</div><span class="badge b-brunch">🥞 Brunch</span></div>
+<div class="ctype">Southern Kitchen &amp; Brunch – Disney Springs (sem ingresso)</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3705,-81.5195" target="_blank">📍 Disney Springs, Lake Buena Vista, FL</a>
+<div class="cprice">💰 <b>Moderado | Reservas recomendadas</b></div>
+<div class="chip"><ul>
+<li>🍗 Chicken &amp; Waffles – ícone do cardápio</li>
+<li>🥞 Buttermilk Pancakes | Shrimp &amp; Grits do Sul dos EUA</li>
+<li>🍦 Dica: Reese's Nitro no Everglazed ao lado – imperdível!</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPzCe5yjucP/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3705" data-lng="-81.5195"></span></div>
+</div>
+
+<div class="card" data-b="brunch" data-lat="28.3701" data-lng="-81.5202">
+<div class="ctop"><div class="cname">🥩 STK Orlando</div><span class="badge b-brunch">🥞 Brunch AYCE</span></div>
+<div class="ctype">Brunch All-You-Can-Eat – Disney Springs (sem ingresso)</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3701,-81.5202" target="_blank">📍 1580 E Buena Vista Dr, Lake Buena Vista, FL</a>
+<div class="cprice">💰 <b>Moderado a alto</b></div>
+<div class="chip"><ul>
+<li>🍳 Brunch AYCE – ovos, pancakes, carnes, fritadas</li>
+<li>🍾 Mimosas | Bloody Mary | Cocktails de brunch</li>
+<li>📍 Disney Springs – acesso sem ingresso do parque</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPzCe5yjucP/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3701" data-lng="-81.5202"></span></div>
+</div>
+
+<!-- ══ PASSEIO ══ -->
 
 <div class="card" data-b="passeio" data-lat="28.5742" data-lng="-81.8051">
-<div class="ctop"><div class="cname">🌻 Southern Hill Farms</div><span class="badge b-passeio">Passeio</span></div>
-<div class="ctype">Fazenda / Experiência</div>
-<div class="caddr">16651 Schofield Rd, Clermont, FL 34714</div>
-<div class="cprice">💰 <b>Ingresso variável (sex–dom)</b></div>
-<div class="chip"><ul><li>U-pick sunflowers e zinnias | Corn maze 5 acres</li><li>Petting zoo, pula-pula, carrossel, tirolesa</li><li>Festival de outono para toda família</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPAePc4jEAO/">▶ Instagram</a><span class="dist" data-lat="28.5742" data-lng="-81.8051"></span></div>
+<div class="ctop"><div class="cname">🌻 Southern Hill Farms</div><span class="badge b-passeio">🌿 Passeio</span></div>
+<div class="ctype">Fazenda / Experiência ao Ar Livre – Clermont</div>
+<a class="caddr" href="https://maps.google.com/?q=28.5742,-81.8051" target="_blank">📍 16651 Schofield Rd, Clermont, FL 34714</a>
+<div class="cprice">💰 <b>Ingresso variável | Sexta–domingo</b></div>
+<div class="chip"><ul>
+<li>🌻 U-Pick sunflowers e zinnias | Corn Maze de 5 acres</li>
+<li>🐐 Petting zoo, pula-pula, carrossel, tirolesa, animais</li>
+<li>🍂 Festival de outono perfeito para toda a família</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPAePc4jEAO/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.5742" data-lng="-81.8051"></span></div>
 </div>
 
 <div class="card" data-b="passeio" data-lat="27.9100" data-lng="-81.0800">
-<div class="ctop"><div class="cname">🤠 Westgate River Ranch</div><span class="badge b-passeio">Passeio</span></div>
-<div class="ctype">Resort / Experiência</div>
-<div class="caddr">Kissimmee region, Florida</div>
-<div class="cprice">💰 <b>Variável</b></div>
-<div class="chip"><ul><li>Hidden gem da Flórida</li><li>Tipis e cabanas estilo ranch</li><li>Natureza, aventura e lifestyle único</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DNrUyp93u8u/">▶ Instagram</a><span class="dist" data-lat="27.9100" data-lng="-81.0800"></span></div>
+<div class="ctop"><div class="cname">🤠 Westgate River Ranch</div><span class="badge b-passeio">🌿 Passeio</span></div>
+<div class="ctype">Resort Rural / Experiência – Região de Kissimmee</div>
+<a class="caddr" href="https://maps.google.com/?q=27.9100,-81.0800" target="_blank">📍 River Ranch, Kissimmee Region, FL</a>
+<div class="cprice">💰 <b>Variável por atividade e hospedagem</b></div>
+<div class="chip"><ul>
+<li>🏕️ Hidden gem da Flórida | Tipis e cabanas estilo ranch</li>
+<li>🐎 Cavalgada, pesca, tiro ao alvo, atividades ao ar livre</li>
+<li>🌿 Natureza e aventura longe do turismo convencional</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DNrUyp93u8u/" target="_blank">▶ Instagram</a><span class="dist" data-lat="27.9100" data-lng="-81.0800"></span></div>
 </div>
 
+<!-- ══ COMPRAS ══ -->
+
 <div class="card" data-b="compras">
-<div class="ctop"><div class="cname">🛍️ Mackenzie-Childs</div><span class="badge b-compras">Compras</span></div>
-<div class="ctype">Home Decor / Online</div>
-<div class="caddr">Marca americana – compra online</div>
-<div class="cprice">💰 <b>Cupom: comentar "Mackenzie Childs"</b></div>
-<div class="chip"><ul><li>Ícone do xadrez preto e branco</li><li>Peças de decoração únicas e colecionáveis</li></ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DZQqux5pg9d/">▶ Instagram</a></div>
+<div class="ctop"><div class="cname">🛍️ Mackenzie-Childs</div><span class="badge b-compras">🛍️ Compras</span></div>
+<div class="ctype">Home Decor Premium – Marca Americana Icônica</div>
+<a class="caddr" href="https://maps.google.com/?q=Mackenzie+Childs+Winter+Park+Florida" target="_blank">📍 Disponível online e em lojas selecionadas</a>
+<div class="cprice">💰 <b>Premium | Cupom: comentar "Mackenzie Childs" no post</b></div>
+<div class="chip"><ul>
+<li>♟️ Ícone do xadrez preto e branco – design inconfundível</li>
+<li>🏡 Peças únicas de decoração, louças e acessórios</li>
+<li>✨ Design americano premium | Altamente colecionável</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DZQqux5pg9d/" target="_blank">▶ Instagram</a></div>
+</div>
+
+<!-- ══ PARQUES ══ -->
+
+<div class="card" data-b="parques" data-lat="28.3852" data-lng="-81.5639">
+<div class="ctop"><div class="cname">🎠 Disney Passholders – 40% OFF</div><span class="badge b-parques">🏰 Disney</span></div>
+<div class="ctype">Desconto em Restaurantes – Walt Disney World Resort</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3852,-81.5639" target="_blank">📍 Walt Disney World Resort, Orlando, FL</a>
+<div class="cprice">💰 <b>Até 40% OFF (seg–qui | mai–jul)</b></div>
+<div class="chip"><ul>
+<li>40% OFF: Coral Reef, Garden Grill, Tiffins, Tusker House, Toledo ⭐</li>
+<li>20% OFF: Be Our Guest, Crystal Palace, Flying Fish</li>
+<li>🎟️ Válido seg–qui | dine-in | até 3 convidados por passe</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DW468xJtDko/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3852" data-lng="-81.5639"></span></div>
+</div>
+
+<div class="card" data-b="parques" data-lat="28.3747" data-lng="-81.5494">
+<div class="ctop"><div class="cname">🌍 EPCOT – Sobremesas por Pavilhão</div><span class="badge b-parques">🏰 EPCOT</span></div>
+<div class="ctype">Guia de Sobremesas – EPCOT, Walt Disney World</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3747,-81.5494" target="_blank">📍 EPCOT, Walt Disney World, Orlando, FL</a>
+<div class="cprice">💰 <b>Variável por pavilhão | Ingresso necessário</b></div>
+<div class="chip"><ul>
+<li>🇫🇷🇩🇪 França: sorvete no brioche | Alemanha: pipoca de caramelo</li>
+<li>🇺🇸🇯🇵 EUA: funnel cake | Japão: mochi ice cream variado</li>
+<li>🇮🇹🇳🇴 Itália: gelato artesanal | Noruega: school bread</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/p/DUGeawqEWI7/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3747" data-lng="-81.5494"></span></div>
+</div>
+
+<div class="card" data-b="parques" data-lat="28.3705" data-lng="-81.5190">
+<div class="ctop"><div class="cname">⛵ The Boathouse</div><span class="badge b-parques">🏰 Disney Springs</span></div>
+<div class="ctype">Restaurante à Beira-Lago – Disney Springs (sem ingresso)</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3705,-81.5190" target="_blank">📍 1620 E Buena Vista Dr, Lake Buena Vista, FL</a>
+<div class="cprice">💰 <b>Moderado a alto</b></div>
+<div class="chip"><ul>
+<li>🦞 Lobster Roll | Seafood Tower | Fish &amp; Chips</li>
+<li>🍰 Sobremesas over-the-top – perfeitas para compartilhar</li>
+<li>🌊 À beira do lago | Amphibicar Boat Tours disponíveis</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DPzCe5yjucP/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3705" data-lng="-81.5190"></span></div>
+</div>
+
+<div class="card" data-b="parques" data-lat="28.3706" data-lng="-81.5197">
+<div class="ctop"><div class="cname">🍀 Raglan Road Irish Pub</div><span class="badge b-parques">🏰 Disney Springs</span></div>
+<div class="ctype">Pub Irlandês Autêntico – Disney Springs (sem ingresso)</div>
+<a class="caddr" href="https://maps.google.com/?q=28.3706,-81.5197" target="_blank">📍 1640 E Buena Vista Dr, Lake Buena Vista, FL</a>
+<div class="cprice">💰 <b>Moderado</b></div>
+<div class="chip"><ul>
+<li>🐟 Fish &amp; Chips | Shepherd's Pie | Beef &amp; Guinness Stew</li>
+<li>🍺 Cervejas irlandesas de torneira | Whiskey selecionados</li>
+<li>🎵 Música e dança irlandesa ao vivo todas as noites</li>
+</ul></div>
+<div class="cfoot"><a class="iglink" href="https://www.raglanroad.com/" target="_blank">🌐 Site oficial</a><span class="dist" data-lat="28.3706" data-lng="-81.5197"></span></div>
 </div>
 
 </div><!-- /grid -->
@@ -407,14 +712,18 @@ function geoClick(){
     btn.classList.add('on');btn.textContent='📡 Perto de mim ✓';
     document.querySelectorAll('.dist').forEach(function(d){
       var la=parseFloat(d.dataset.lat),ln=parseFloat(d.dataset.lng);
-      if(!isNaN(la)){var km=hav(uLat,uLng,la,ln);d.textContent=km<1?(km*1000).toFixed(0)+'m':km.toFixed(1)+'km';}
+      if(!isNaN(la)){
+        var km=hav(uLat,uLng,la,ln);
+        var t=Math.max(3,Math.round(km*2.2));
+        d.textContent=km<1?(km*1000).toFixed(0)+'m · ~'+t+'min':km.toFixed(1)+'km · ~'+t+'min';
+      }
     });
-    // sort cards by distance
     var grid=document.querySelector('.grid');
     var cards=Array.from(document.querySelectorAll('.card'));
     cards.sort(function(a,b){
-      var da=parseFloat(a.dataset.lat)?hav(uLat,uLng,parseFloat(a.dataset.lat),parseFloat(a.dataset.lng)):99999;
-      var db=parseFloat(b.dataset.lat)?hav(uLat,uLng,parseFloat(b.dataset.lat),parseFloat(b.dataset.lng)):99999;
+      var la=parseFloat(a.dataset.lat),lb=parseFloat(b.dataset.lat);
+      var da=la?hav(uLat,uLng,la,parseFloat(a.dataset.lng)):99999;
+      var db=lb?hav(uLat,uLng,lb,parseFloat(b.dataset.lng)):99999;
       return da-db;
     });
     cards.forEach(function(c){grid.appendChild(c);});
