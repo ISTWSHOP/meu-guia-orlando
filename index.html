@@ -1446,7 +1446,7 @@ function hav(a,b,c,d){var R=6371,dL=(c-a)*Math.PI/180,dN=(d-b)*Math.PI/180,e=Mat
 function geoClick(){
   var btn=document.getElementById('geobtn');
   if(geoOn){geoOn=false;uLat=null;btn.classList.remove('on');btn.textContent='📡 Ordenar por proximidade';document.querySelectorAll('.dist').forEach(function(d){d.textContent='';});return;}
-  if(!navigator.geolocation){alert('Abra este arquivo no Safari para usar a localização.');return;}
+  if(!navigator.geolocation){alert('Seu navegador não suporta localização.');return;}
   btn.textContent='📡 Localizando...';
   navigator.geolocation.getCurrentPosition(function(p){
     uLat=p.coords.latitude;uLng=p.coords.longitude;geoOn=true;
@@ -1468,7 +1468,19 @@ function geoClick(){
       return da-db;
     });
     cards.forEach(function(c){grid.appendChild(c);});
-  },function(){btn.textContent='📡 Ordenar por proximidade';});
+  },function(err){
+    btn.textContent='📡 Ordenar por proximidade';
+    if(err.code===1){
+      var isSafari=/^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      if(isSafari){
+        alert('Localização bloqueada no Safari.\n\n📱 iPhone/iPad:\nAjustes → Privacidade → Serviços de Localização → Safari → "Ao usar o app"\n\n💻 Mac:\nPreferências do Sistema → Segurança e Privacidade → Serviços de Localização → Safari ✓\n\nDepois recarregue a página e tente novamente.');
+      } else {
+        alert('Permissão de localização negada.\nClique no ícone 🔒 na barra de endereço e permita a localização.');
+      }
+    } else {
+      alert('Não foi possível obter sua localização. Verifique sua conexão e tente novamente.');
+    }
+  },{timeout:10000,maximumAge:300000,enableHighAccuracy:false});
 }
 </script>
 </body>
