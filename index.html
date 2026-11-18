@@ -128,7 +128,7 @@ body.cidade-miami .card:not([data-cidade=miami]){display:none;}
 
 <div class="header">
   <h1>📍 Meu Guia de Lugares</h1>
-  <p class="sub">187 lugares salvos</p>
+  <p class="sub">186 lugares salvos</p>
   <div class="cats">
     <label for="f-todos">Todos</label>
     <label for="f-chique">⭐ Chique/Michelin</label>
@@ -674,19 +674,6 @@ body.cidade-miami .card:not([data-cidade=miami]){display:none;}
 </div>
 
 <!-- ══ PARQUES ══ -->
-
-<div class="card" data-cidade="orlando" data-b="disney" data-lat="28.3852" data-lng="-81.5639">
-<div class="ctop"><div class="cname">🎠 Disney Passholders – 40% OFF</div><span class="badge b-disney">🏰 Disney</span></div>
-<div class="ctype">Desconto em Restaurantes – Walt Disney World Resort</div>
-<a class="caddr" href="https://maps.google.com/?q=28.3852,-81.5639" target="_blank">📍 Walt Disney World Resort, Orlando, FL</a>
-<div class="cprice">💰 <b>Até 40% OFF (seg–qui | mai–jul)</b></div>
-<div class="chip"><ul>
-<li>40% OFF: Coral Reef, Garden Grill, Tiffins, Tusker House, Toledo ⭐</li>
-<li>20% OFF: Be Our Guest, Crystal Palace, Flying Fish</li>
-<li>🎟️ Válido seg–qui | dine-in | até 3 convidados por passe</li>
-</ul></div>
-<div class="cfoot"><a class="iglink" href="https://www.instagram.com/reel/DW468xJtDko/" target="_blank">▶ Instagram</a><span class="dist" data-lat="28.3852" data-lng="-81.5639"></span></div>
-</div>
 
 <div class="card" data-cidade="orlando" data-b="epcot" data-lat="28.3747" data-lng="-81.5494">
 <div class="ctop"><div class="cname">🌍 EPCOT – Sobremesas por Pavilhão</div><span class="badge b-epcot">🌍 EPCOT</span></div>
@@ -2463,6 +2450,8 @@ body.cidade-miami .card:not([data-cidade=miami]){display:none;}
 </div><!-- /container -->
 
 <script>
+// Auto-hide expired promotional cards
+(function(){var today=new Date().toISOString().slice(0,10);document.querySelectorAll('.card[data-expiry]').forEach(function(c){if(c.dataset.expiry<today){c.style.display='none';}});})();
 var uLat=null,uLng=null,geoOn=false;
 var cidadeAtiva=null;
 function cidadeClick(cidade){
